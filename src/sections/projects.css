@@ -1,0 +1,127 @@
+#projects { position: relative; padding-block: var(--section-pad); }
+
+#projects .pj-head { display: grid; gap: 12px; margin-bottom: clamp(24px, 4vw, 48px); }
+#projects .pj-title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(46px, 6.4vw, 84px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--ink-1);
+}
+#projects .pj-title__dot { color: var(--signal); }
+
+/* the bento: deepest work first. Large spans the row, medium takes half, small a quarter. */
+#projects .pj-bento { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+#projects .pj-card--large { grid-column: 1 / -1; }
+#projects .pj-card--medium { grid-column: span 2; }
+
+#projects .pj-card {
+  display: flex; flex-direction: column; gap: 24px;
+  padding: clamp(20px, 2.4vw, 28px);
+  border: 1px solid var(--hair);
+  border-radius: var(--radius);
+  background: transparent;
+  transition: border-color 0.16s var(--ease-out);
+}
+#projects .pj-card:hover, #projects .pj-card:focus-within { border-color: var(--hair-hover); }
+
+#projects .pj-card__text { display: flex; flex-direction: column; gap: 12px; }
+#projects .pj-card__year { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; color: var(--ink-3); }
+#projects .pj-card__name { font-family: var(--font-serif); font-weight: 400; font-size: 30px; line-height: 1.1; letter-spacing: -0.01em; color: var(--ink-1); }
+#projects .pj-card__what { font-size: 17px; line-height: 1.45; color: var(--ink-1); }
+#projects .pj-card__stat { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--signal); }
+#projects .pj-card__line { max-width: var(--measure); color: var(--ink-2); }
+#projects .pj-card__points { display: grid; gap: 8px; max-width: var(--measure); padding: 0; list-style: none; font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+#projects .pj-card__points li { position: relative; padding-left: 16px; }
+#projects .pj-card__points li::before { content: ""; position: absolute; left: 0; top: 0.65em; width: 6px; height: 1px; background: var(--signal); }
+#projects .pj-card__points b { font-weight: 600; color: var(--ink-1); }
+#projects .pj-card__points code { font-family: var(--font-mono); font-size: 0.85em; color: var(--ink-1); }
+#projects .pj-card .chips { margin-top: 4px; }
+#projects .chips .chip--signal { border-color: rgba(79, 227, 193, 0.45); color: var(--signal); }
+#projects .pj-card__links { margin-top: 4px; }
+
+/* the films keep their original palette and screen frame; tokens.css remaps these names site-wide, so they are pinned here */
+#projects .pj-well {
+  --coral: #ff6b4a;
+  --sun: #ffc845;
+  --teal: #2ec4b6;
+  --cream: #fff4e0;
+  --paper: #f6ecd8;
+  --ink: #0e1124;
+  --navy: #161a33;
+  --midnight: #262c5a;
+  --muted: rgba(255, 244, 224, 0.72);
+  --faint: rgba(255, 244, 224, 0.4);
+  --line: rgba(255, 244, 224, 0.16);
+  --shadow: 0 30px 80px rgba(5, 7, 20, 0.45);
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-hand: "Caveat", cursive;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --pj-accent: var(--teal);
+  position: relative;
+  margin-top: auto;
+  border-radius: 16px;
+  background: var(--ink);
+  box-shadow: var(--shadow), 0 0 0 1.5px var(--line), 0 0 60px -20px var(--pj-accent);
+  overflow: hidden;
+  font-family: var(--font-display);
+  color: var(--cream);
+}
+#projects .pj-well[data-accent="coral"] { --pj-accent: var(--coral); }
+#projects .pj-well[data-accent="sun"] { --pj-accent: var(--sun); }
+#projects .pj-well__bar {
+  display: flex; align-items: center; gap: 6px;
+  height: 30px; padding: 0 12px;
+  background: var(--midnight);
+}
+#projects .pj-well__bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--coral); flex: none; }
+#projects .pj-well__bar i:nth-child(2) { background: var(--sun); }
+#projects .pj-well__bar i:nth-child(3) { background: var(--teal); }
+#projects .pj-well__bar span {
+  flex: 1; min-width: 0; margin-left: 10px;
+  font-family: var(--font-mono); font-size: 11.5px; line-height: 1.5; color: var(--muted);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+#projects .pj-well__body {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  container-type: inline-size;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+#projects .pj-card--small { gap: 18px; padding: 18px; }
+#projects .pj-card--small .pj-card__name { font-size: 24px; }
+#projects .pj-card--small .pj-card__what { font-size: 15px; }
+#projects .pj-more { margin-top: clamp(32px, 4vw, 48px); }
+#projects .pj-more .pill { text-transform: none; }
+
+@media (min-width: 900px) {
+  #projects .pj-card--large {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+    align-items: center;
+    gap: clamp(28px, 4vw, 56px);
+    padding: clamp(28px, 3vw, 40px);
+  }
+  #projects .pj-card--large .pj-card__name { font-size: clamp(38px, 3.6vw, 48px); }
+  #projects .pj-card--large .pj-card__what { font-size: 20px; }
+  #projects .pj-card--large .pj-well { margin-top: 0; }
+}
+
+@media (max-width: 1099px) {
+  #projects .pj-card--small { grid-column: span 2; }
+}
+
+@media (max-width: 899px) {
+  #projects .pj-bento { grid-template-columns: minmax(0, 1fr); }
+  #projects .pj-card--medium, #projects .pj-card--small { grid-column: auto; }
+  #projects .pj-well { width: 100%; max-width: 260px; }
+  #projects .pill { min-height: 44px; }
+}
+
+@media (max-width: 600px) {
+  #projects .pj-card:not(.pj-card--large) .pj-well { display: none; }
+}

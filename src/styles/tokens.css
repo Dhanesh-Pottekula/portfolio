@@ -1,0 +1,44 @@
+:root {
+  color-scheme: dark;
+  --sky: #000000;
+  --ink-1: #f2eee6;
+  --ink-2: #e2ded6;
+  --ink-3: #c2beb6;
+  --signal: #4fe3c1;
+  --signal-deep: #0b8f73;
+  --signal-glow: rgba(79, 227, 193, 0.35);
+  --hair: rgba(242, 238, 230, 0.16);
+  --hair-hover: rgba(242, 238, 230, 0.38);
+  --star-warm: #ffd9a0;
+  --star-glow: rgba(255, 190, 120, 0.5);
+  --screen: #0a0a0a;
+
+  --font-sign: "Quicksand", ui-rounded, system-ui, sans-serif;
+  --font-serif: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+
+  --gutter: clamp(16px, 5vw, 72px);
+  --section-pad: clamp(56px, 9vh, 104px);
+  --max: 1200px;
+  --measure: 34rem;
+  --radius: 18px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Legacy names still used inside the films: every accent collapses to the one signal colour. */
+  --coral: var(--signal);
+  --sun: var(--signal);
+  --teal: var(--signal);
+  --cream: var(--ink-1);
+  --paper: #f2eee6;
+  --navy: var(--sky);
+  --midnight: #141414;
+  --ink: #101010;
+  --muted: var(--ink-2);
+  --faint: var(--ink-3);
+  --line: var(--hair);
+  --font-display: var(--font-sans);
+  --font-hand: var(--font-serif);
+  --shadow: none;
+  --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+}

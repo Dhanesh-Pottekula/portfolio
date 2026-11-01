@@ -1,0 +1,171 @@
+<div class="wrap">
+  <header class="wk-head">
+    <p class="kicker" data-reveal>experience</p>
+    <h2 class="section-title" data-reveal>Where I've <em>worked.</em></h2>
+  </header>
+
+  <div class="wk-flight" data-braid=".wk-blip" data-braid-amp="14" data-hold=".wk-caps">
+    <span class="wk-thread" data-reveal aria-hidden="true"></span>
+    <ol class="wk-log">
+      <li class="wk-entry wk-entry--now">
+        <span class="wk-blip" aria-hidden="true"></span>
+        <p class="wk-date" data-reveal>Aug 2025 <span aria-hidden="true">→</span><span class="visually-hidden">to</span> <b>now</b></p>
+        <div class="wk-main">
+          <header class="wk-top" data-reveal>
+            <div class="wk-copy">
+              <h3 class="wk-title">AiRA Labs</h3>
+              <span class="doodle doodle--logo doodle--aira" aria-hidden="true" data-pop><img src="films/aira/head.webp" alt=""><img src="films/aira/center.svg" alt=""><img src="films/aira/smile.svg" alt=""></span>
+              <p class="wk-meta">founding engineer, team lead · bengaluru</p>
+              <p class="wk-intro">An AI you talk to out loud, in beta on iPhone and Android. I lead a four-person team across frontend and backend, work directly with the CEO, and architected the backend she runs on.</p>
+              <p class="wk-proof pop-clip"><b class="num3d" data-pop data-count>1,900+</b> commits here · <b class="num3d" data-pop data-count>1,500+</b> of them in the backend</p>
+            </div>
+          </header>
+          <div class="wk-body" data-caps="aira">
+            <ul class="wk-caps" data-braid=".wk-cap__btn" data-braid-dot data-braid-amp="7" data-braid-min="820" data-braid-follow="hold" aria-label="What AiRA does, and what I built">
+              <li class="wk-cap" data-reveal data-hold-step>
+                <button class="wk-cap__btn" type="button" id="wk-aira-video" aria-labelledby="wk-aira-video-t" aria-describedby="wk-aira-video-d">
+                  <span class="wk-cap__title" id="wk-aira-video-t">Realtime text to video</span>
+                  <span class="wk-cap__line" id="wk-aira-video-d">I built Lumen, which lets an LLM turn text into narrated explainer videos in real time: the video starts playing while it's still being made, for about <b>$1.60</b> per 3-minute video.</span>
+                  <span class="wk-cap__more"><span class="wk-cap__how">Video models paint every pixel; Lumen doesn't. The LLM writes a small JSON script and my Canvas engine animates it, each frame a pure function of time, so the video stays sharp, editable and seekable. Pictures draw while the script streams, scenes are written four at a time, and a broken scene is repaired or dropped, never the whole video.</span><span class="wk-cap__nums"><b>~50×</b> cheaper than AI video <i>·</i> streamed scene by scene <i>·</i> <b>17</b> animation modules, <b>4</b> npm packages</span></span>
+                </button>
+              </li>
+              <li class="wk-cap" data-reveal data-hold-step>
+                <button class="wk-cap__btn" type="button" id="wk-aira-shop" aria-labelledby="wk-aira-shop-t" aria-describedby="wk-aira-shop-d">
+                  <span class="wk-cap__title" id="wk-aira-shop-t">Her own browser</span>
+                  <span class="wk-cap__line" id="wk-aira-shop-d">I gave her her own browser, and she has full control of it. Two systems I built keep that safe. <b>Permissions:</b> for each tool, website and saved sign-in, you choose whether she asks every time, asks once, or just acts. <b>Vault:</b> your passwords and cards stay encrypted under Azure Key Vault and never reach the model.</span>
+                  <span class="wk-cap__more"><span class="wk-cap__how">It's a real cloud Chrome, one locked session per site, with account-security pages blocked. Saved sign-ins are filled straight into the page. Each user has their own key, keys rotate on every boot, and revoking access destroys the key.</span><span class="wk-cap__nums"><b>3</b> kinds of action × <b>3</b> permission modes <i>·</i> AES-256-GCM vault <i>·</i> <b>3</b> tasks at once per user</span></span>
+                </button>
+              </li>              <li class="wk-cap" data-reveal data-hold-step>
+                <button class="wk-cap__btn" type="button" id="wk-aira-talk" aria-labelledby="wk-aira-talk-t" aria-describedby="wk-aira-talk-d">
+                  <span class="wk-cap__title" id="wk-aira-talk-t">Talk &amp; show</span>
+                  <span class="wk-cap__line" id="wk-aira-talk-d">I built her realtime voice and her screen. Talk over her and she catches it within about <b>200 ms</b> and stops mid-word. As she talks, she writes the interface herself and the app draws it live: cards, lists, maps and comparisons. It replaced <b>3</b> voice pipelines and <b>17,000</b> lines.</span>
+                  <span class="wk-cap__more"><span class="wk-cap__how">One WebSocket carries your voice up and her speech, text and screen down. Reply tokens stream into text-to-speech, so she speaks before the answer is finished. The screen arrives as a UI program she writes inline, and the app patches it in place as each line lands.</span><span class="wk-cap__nums"><b>14</b> interactive components she can place in an answer <i>·</i> <b>1</b> socket for voice, text and screen</span></span>
+                </button>
+              </li>
+              <li class="wk-cap" data-reveal data-hold-step>
+                <button class="wk-cap__btn" type="button" id="wk-aira-day" aria-labelledby="wk-aira-day-t" aria-describedby="wk-aira-day-d">
+                  <span class="wk-cap__title" id="wk-aira-day-t">Your day</span>
+                  <span class="wk-cap__line" id="wk-aira-day-d">I built her Gmail and Calendar agents, the reminders, and her memory: over <b>95%</b> on LongMemEval in under <b>3 s</b>, and she reads up to <b>1,000</b> of your emails to learn who you are.</span>
+                  <span class="wk-cap__more"><span class="wk-cap__how">Memory is a knowledge graph plus vector search, and a weighted walk keeps only the paths that stay relevant. Anything that sends waits for your yes, and a reminder never fires twice, even after a crash.</span><span class="wk-cap__nums">Memgraph + Qdrant across <b>6</b> collections <i>·</i> emails summarised in parallel, then merged</span></span>
+                </button>
+              </li>
+              <li class="wk-cap" data-reveal data-hold-step>
+                <button class="wk-cap__btn" type="button" id="wk-aira-hands" aria-labelledby="wk-aira-hands-t" aria-describedby="wk-aira-hands-d">
+                  <span class="wk-cap__title" id="wk-aira-hands-t">Guides you</span>
+                  <span class="wk-cap__line" id="wk-aira-hands-d">I built her guided sessions. She stays with you, hands-free, through cooking, workouts, stretches, dance and meditation, for up to <b>30 minutes</b>: she plans each step, keeps time, and re-plans when you speak mid-step.</span>
+                  <span class="wk-cap__more"><span class="wk-cap__how">Each session is a typed plan of steps, and every line is voiced in parallel. She listens the whole time: what you say mid-step is folded in without losing her place, the wake word is matched by sound, and a paused session picks up at the last word you heard.</span><span class="wk-cap__nums">wake word: Metaphone + Jaro–Winkler <b>≥ 0.85</b> <i>·</i> every step voiced in parallel</span></span>
+                </button>
+              </li>
+            </ul>
+            <div class="wk-stage">
+              <div class="wk-device wk-device--phone" id="wk-aira-film" data-turn>
+                <div class="wk-screen">
+                  <div class="wk-canvas wk-canvas--phone"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ul class="chips wk-chips pop-clip" aria-label="AiRA stack">
+            <li data-pop>realtime voice</li><li data-pop>streaming ui</li><li data-pop>browser agents</li><li data-pop>rag memory</li><li data-pop>python</li><li data-pop>fastapi</li><li data-pop>redis</li><li data-pop>azure</li><li data-pop>react native</li><li data-pop>typescript</li>
+          </ul>
+          <div class="pills wk-links"><a class="pill" href="https://github.com/Dhanesh-Pottekula/Lumen" target="_blank" rel="noopener">{{arrow}}Lumen on GitHub</a></div>
+        </div>
+      </li>
+
+      <li class="wk-entry wk-entry--past">
+        <span class="wk-blip" aria-hidden="true"></span>
+        <p class="wk-date" data-reveal>Aug 2024 <span aria-hidden="true">→</span><span class="visually-hidden">to</span> Jul 2025</p>
+        <div class="wk-main">
+          <header class="wk-top" data-reveal>
+            <div class="wk-copy">
+              <h3 class="wk-title">Jigsaw</h3>
+              <img class="doodle doodle--puzzle" src="img/pencil/puzzle.webp" width="110" height="135" alt="" aria-hidden="true" data-pop>
+              <p class="wk-meta">full-stack developer · noida</p>
+              <p class="wk-intro">Hiring software for every side of the hire. I moved the codebase to TypeScript, lifted SEO by 30%, and mentored three developers.</p>
+              <p class="wk-proof pop-clip"><b class="num3d" data-pop data-count>10,000+</b> candidates matched · <b class="num3d" data-pop data-count>2,000+</b> jobs extracted</p>
+            </div>
+          </header>
+          <div class="wk-body" data-caps="jigsaw">
+            <ul class="wk-caps" data-braid=".wk-cap__btn" data-braid-dot data-braid-amp="7" data-braid-min="820" data-braid-follow="hold" aria-label="What I built at Jigsaw">
+              <li class="wk-cap" data-reveal data-hold-step>
+                <button class="wk-cap__btn" type="button" id="wk-jg-matching" aria-labelledby="wk-jg-matching-t" aria-describedby="wk-jg-matching-d">
+                  <span class="wk-cap__title" id="wk-jg-matching-t">Matching</span>
+                  <span class="wk-cap__line" id="wk-jg-matching-d">I built the AI pipelines that read any job post and rank who fits. 400+ hours of manual screening, gone.</span>
+                  <span class="wk-cap__more"><span class="wk-cap__how">An LLM turns a free-text job post into structured fields (role, years, skills, city), and every candidate is ranked against those fields.</span><span class="wk-cap__nums"><b>10,000+</b> candidates recommended <i>·</i> <b>2,000+</b> jobs extracted</span></span>
+                </button>
+              </li>
+              <li class="wk-cap" data-reveal data-hold-step>
+                <button class="wk-cap__btn" type="button" id="wk-jg-hiring" aria-labelledby="wk-jg-hiring-t" aria-describedby="wk-jg-hiring-d">
+                  <span class="wk-cap__title" id="wk-jg-hiring-t">Hiring</span>
+                  <span class="wk-cap__line" id="wk-jg-hiring-d">I built interviews, video assessments, live chat and role-based access. Hiring got 60% faster.</span>
+                  <span class="wk-cap__more"><span class="wk-cap__how">Interviews, video assessments and live chat in one hiring flow, with role-based access deciding what each recruiter and hiring manager can see and do.</span><span class="wk-cap__nums"><b>60%</b> faster hiring <i>·</i> SEO up <b>30%</b></span></span>
+                </button>
+              </li>
+              <li class="wk-cap" data-reveal data-hold-step>
+                <button class="wk-cap__btn" type="button" id="wk-jg-backend" aria-labelledby="wk-jg-backend-t" aria-describedby="wk-jg-backend-d">
+                  <span class="wk-cap__title" id="wk-jg-backend-t">Backend</span>
+                  <span class="wk-cap__line" id="wk-jg-backend-d">I built the NestJS backend: referrals, assessments, LinkedIn automation, and reports cut from 12 minutes to 30 seconds.</span>
+                  <span class="wk-cap__more"><span class="wk-cap__how">NestJS services own referrals and assessments, and LinkedIn outreach is automated through UniPile.</span><span class="wk-cap__nums">reports <b>12 min → 30 s</b> <i>·</i> mentored <b>3</b> developers</span></span>
+                </button>
+              </li>
+            </ul>
+            <div class="wk-stage">
+              <div class="wk-device wk-device--tablet" id="wk-jg-film" data-turn>
+                <div class="wk-screen">
+                  <div class="wk-canvas wk-canvas--tablet"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ul class="chips wk-chips pop-clip" aria-label="Jigsaw stack">
+            <li data-pop>nestjs</li><li data-pop>typescript</li><li data-pop>next.js</li><li data-pop>llms</li><li data-pop>websockets</li><li data-pop>unipile</li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="wk-entry wk-entry--past">
+        <span class="wk-blip" aria-hidden="true"></span>
+        <p class="wk-date" data-reveal>Jan 2024 <span aria-hidden="true">→</span><span class="visually-hidden">to</span> Apr 2024 <small>my first company</small></p>
+        <div class="wk-main">
+          <header class="wk-top" data-reveal>
+            <div class="wk-copy">
+              <h3 class="wk-title">StreetDine</h3>
+              <img class="doodle doodle--logo doodle--streetdine" src="img/logos/streetdine.svg" width="60" height="60" alt="" aria-hidden="true" data-pop>
+              <p class="wk-meta">full-stack, founding member · remote</p>
+              <p class="wk-intro">Restaurant software for real service nights. I built the frontend staff ran the floor on, and the APIs behind orders, payments and reports.</p>
+              <p class="wk-proof pop-clip"><b class="num3d" data-pop data-count>592</b> commits · <b class="num3d" data-pop data-count>380</b> on the partner app</p>
+            </div>
+          </header>
+          <div class="wk-body" data-caps="streetdine">
+            <ul class="wk-caps" data-braid=".wk-cap__btn" data-braid-dot data-braid-amp="7" data-braid-min="820" data-braid-follow="hold" data-hold-align="end" aria-label="What I built at StreetDine">
+              <li class="wk-cap" data-reveal data-hold-step>
+                <button class="wk-cap__btn" type="button" id="wk-sd-service" aria-labelledby="wk-sd-service-t" aria-describedby="wk-sd-service-d">
+                  <span class="wk-cap__title" id="wk-sd-service-t">Service</span>
+                  <span class="wk-cap__line" id="wk-sd-service-d">I built the live order board: orders, waiters and add-ons, straight to the kitchen printer and live on every screen.</span>
+                  <span class="wk-cap__more"><span class="wk-cap__how">Each order moves through new, accepted, ready, paid and closed, with every item served or cancelled on its own, and every card carries the one action that comes next. Only the button you pressed waits; the rest of the board stays live.</span><span class="wk-cap__nums"><b>380</b> commits on the partner app</span></span>
+                </button>
+              </li>
+              <li class="wk-cap" data-reveal data-hold-step>
+                <button class="wk-cap__btn" type="button" id="wk-sd-money" aria-labelledby="wk-sd-money-t" aria-describedby="wk-sd-money-d">
+                  <span class="wk-cap__title" id="wk-sd-money-t">Money</span>
+                  <span class="wk-cap__line" id="wk-sd-money-d">I built the reporting APIs owners read at closing: sales, orders, staff, tables and payments, by hour, day, month or year.</span>
+                  <span class="wk-cap__more"><span class="wk-cap__how">Every report is one MongoDB aggregation: a shared base pipeline plus a stage for the chosen range, grouped into the buckets the owner asked for.</span><span class="wk-cap__nums"><b>5</b> report APIs <i>·</i> four copies merged into one pipeline, <b>−715</b> lines</span></span>
+                </button>
+              </li>
+            </ul>
+            <div class="wk-stage">
+              <div class="wk-device wk-device--tablet" id="wk-sd-film" data-turn="left">
+                <div class="wk-screen">
+                  <div class="wk-canvas wk-canvas--tablet"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ul class="chips wk-chips pop-clip" aria-label="StreetDine stack">
+            <li data-pop>next.js</li><li data-pop>node</li><li data-pop>mongodb</li><li data-pop>socket.io</li><li data-pop>razorpay</li><li data-pop>pwa</li><li data-pop>onesignal</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+  </div>
+</div>

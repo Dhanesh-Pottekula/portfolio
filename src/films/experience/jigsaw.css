@@ -1,0 +1,64 @@
+/* Jigsaw films: a recruiter's hiring app on the tablet canvas (436 x 316, 284 below the bar), in the films' paper and
+   ink with one violet accent for what the AI did. */
+.jg { --jg: #5b4fd6; --jg-soft: #ece9ff; --jg-hair: rgba(20, 20, 20, 0.12); }
+.jg-bar span { background: #b9b2ff; }
+.jg-k { margin: 0 0 6px; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(20, 20, 20, 0.55); }
+.jg-k span, .jg-k em { font-style: normal; text-transform: none; letter-spacing: 0; }
+.jg-btn { display: inline-block; padding: 7px 12px; border-radius: 8px; background: var(--jg); color: #fff; font-size: 11.5px; font-weight: 600; }
+.jg-btn--dark { background: var(--ink); color: var(--paper); }
+
+/* matching */
+.jg-match { display: grid; grid-template-columns: 1fr 1.15fr; gap: 14px; padding: 12px 14px; }
+.jg-raw { position: relative; margin: 0 0 12px; padding: 9px 10px; overflow: hidden; border-radius: 10px; box-shadow: inset 0 0 0 1px var(--jg-hair); font-size: 11.5px; line-height: 1.45; color: rgba(20, 20, 20, 0.72); }
+.jg-scan { position: absolute; left: 0; right: 0; top: 0; height: 100%; background: linear-gradient(180deg, transparent, rgba(91, 79, 214, 0.18) 85%, var(--jg) 100%); translate: 0 -100%; }
+.jg-raw.is-scanned .jg-scan { animation: jg-scan 1.2s ease-in-out forwards; }
+@keyframes jg-scan { 60% { translate: 0 0; opacity: 1; } 100% { translate: 0 0; opacity: 0; } }
+.jg-tags { display: flex; flex-wrap: wrap; gap: 5px; margin: 0; }
+.jg-tags li { padding: 3px 8px; border-radius: 99px; background: var(--jg-soft); color: var(--jg); font-size: 10.5px; font-weight: 600; }
+.jg-cand { position: relative; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 8px; margin-bottom: 7px; padding: 7px 9px 9px; border-radius: 10px; background: #fff; box-shadow: inset 0 0 0 1px var(--jg-hair); }
+.jg-cand > i, .jg-mover i, .jg-msg i { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--jg-soft); color: var(--jg); font-style: normal; font-size: 9px; font-weight: 700; }
+.jg-cand b { display: block; font-size: 12px; }
+.jg-cand em { font-style: normal; font-size: 9.5px; color: rgba(20, 20, 20, 0.55); }
+.jg-cand strong { font-size: 14px; color: var(--jg); font-variant-numeric: tabular-nums; }
+.jg-cand u { position: absolute; left: 9px; right: 9px; bottom: 4px; height: 2px; border-radius: 2px; background: var(--jg-hair); }
+.jg-cand u::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--jg); transform-origin: left; scale: 0 1; transition: scale 0.6s var(--ease-out) 0.2s; }
+.jg-cand.is-on u::after { scale: var(--fit) 1; }
+.jg-ranked .jg-btn { margin-top: 2px; }
+
+/* hiring */
+.jg-hire { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr; gap: 10px 12px; padding: 10px 14px; }
+.jg-pipe { position: relative; grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; padding-bottom: 34px; }
+.jg-stage { display: flex; justify-content: space-between; padding: 6px 8px; border-radius: 8px; background: #fff; box-shadow: inset 0 0 0 1px var(--jg-hair); font-size: 10.5px; }
+.jg-stage i { font-style: normal; font-family: var(--font-mono); color: rgba(20, 20, 20, 0.55); }
+.jg-mover { position: absolute; left: calc(25% + 1.5px); bottom: 0; width: calc(25% - 4.5px); display: flex; align-items: center; gap: 6px; padding: 4px 6px; border-radius: 8px; background: var(--jg-soft); font-size: 10.5px; font-weight: 600; transition: left 0.7s cubic-bezier(0.65, 0, 0.35, 1); }
+.jg-mover.is-moved { left: calc(50% + 1.5px); box-shadow: 0 0 0 2px var(--jg); }
+.jg-mover i { width: 18px; height: 18px; font-size: 7.5px; background: #fff; }
+.jg-video__q { margin: 0 0 5px; font-size: 11px; font-weight: 600; }
+.jg-video__frame { position: relative; height: 150px; overflow: hidden; border-radius: 10px; background: linear-gradient(180deg, #2a2d3a, #1a1c26); }
+.jg-face { position: absolute; left: 50%; bottom: 0; width: 70px; height: 96px; translate: -50% 0; border-radius: 35px 35px 8px 8px; background: radial-gradient(circle at 50% 30%, #d9a77f 0 22%, transparent 23%), radial-gradient(ellipse at 50% 100%, #5b4fd6 0 55%, transparent 56%); }
+.jg-rec { position: absolute; top: 8px; left: 8px; font-family: var(--font-mono); font-size: 9px; color: #ff6b6b; }
+.jg-rec b { color: #fff; font-weight: 400; }
+.jg-score { position: absolute; right: 8px; bottom: 8px; padding: 3px 8px; border-radius: 99px; background: #e7f4ea; color: #2e6b40; font-size: 10px; font-weight: 700; }
+.jg-msg { display: flex; align-items: flex-end; gap: 6px; margin: 0 0 6px; font-size: 11px; }
+.jg-msg span { padding: 6px 9px; border-radius: 10px 10px 10px 3px; background: #fff; box-shadow: inset 0 0 0 1px var(--jg-hair); }
+.jg-msg--me { justify-content: flex-end; }
+.jg-msg--me span { border-radius: 10px 10px 3px 10px; background: var(--jg); color: #fff; box-shadow: none; }
+.jg-msg i { width: 20px; height: 20px; font-size: 7.5px; }
+.jg-k em { margin-left: 4px; color: #2e7d4f; }
+.jg-role { margin: 4px 0 0; font-size: 9.5px; color: rgba(20, 20, 20, 0.55); }
+
+/* backend: the report */
+.jg-report { padding: 16px 18px; }
+.jg-report__h { margin: 0 0 10px; font-size: 18px; font-weight: 700; }
+.jg-report .jg-btn { position: absolute; top: 14px; right: 18px; }
+.jg-btn.is-busy { opacity: 0.6; }
+.jg-progress { position: relative; height: 6px; overflow: hidden; border-radius: 6px; background: var(--jg-hair); }
+.jg-progress i { position: absolute; inset: 0; border-radius: inherit; background: var(--jg); transform-origin: left; scale: 0 1; transition: scale 2.4s linear; }
+.jg-progress.is-on i { scale: 1 1; }
+.jg-time { margin: 6px 0 14px; font-size: 12px; color: rgba(20, 20, 20, 0.55); }
+.jg-time b { margin-left: 6px; font-size: 15px; color: var(--jg); font-variant-numeric: tabular-nums; }
+.jg-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.jg-stats div { padding: 10px; border-radius: 10px; background: #fff; box-shadow: inset 0 0 0 1px var(--jg-hair); }
+.jg-stats b { display: block; font-size: 22px; }
+.jg-stats span { font-size: 10px; color: rgba(20, 20, 20, 0.6); }
+.jg-foot { margin: 14px 0 0; font-family: var(--font-mono); font-size: 9px; color: rgba(20, 20, 20, 0.5); }

@@ -1,0 +1,127 @@
+/* the hand-drawn ground things pop out of (inserted after every .pop-clip by engine/pop.ts) */
+.pop-ground { display: block; width: 100%; height: 14px; margin-top: -2px; overflow: visible; pointer-events: none; }
+.pop-ground path { fill: none; stroke: rgba(244, 240, 232, 0.5); stroke-width: 1.3; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.pop-clip { perspective: 700px; }
+.pills.pop-clip { padding-bottom: 10px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .pop-clip:not(.is-done) { clip-path: inset(-120px -80px 0 -80px); }
+  .js [data-pop] { opacity: 0; }
+  .js .pop-clip.is-up [data-pop], .js [data-pop].is-up { animation: pop-up 0.9s cubic-bezier(0.22, 0.9, 0.3, 1.2) calc(var(--i, 0) * 90ms) both; }
+  .js .pop-clip + .pop-ground { clip-path: inset(0 100% 0 0); transition: clip-path 0.9s cubic-bezier(0.3, 0.6, 0.2, 1); }
+  .js .pop-clip.is-up + .pop-ground { clip-path: inset(0 0 0 0); }
+}
+@keyframes pop-up {
+  0% { opacity: 0; translate: 0 110%; rotate: x -70deg; scale: 0.85; }
+  55% { opacity: 1; translate: 0 -14%; rotate: x 10deg; scale: 1.05; }
+  78% { translate: 0 4%; rotate: x -4deg; scale: 0.99; }
+  100% { opacity: 1; translate: 0 0; rotate: x 0deg; scale: 1; }
+}
+[data-pop] { transform-origin: 50% 100%; }
+
+/* numbers with a teal extruded edge */
+.num3d {
+  display: inline-block;
+  color: var(--ink-1);
+  text-shadow: 0.025em 0.03em 0 #2f9a82, 0.05em 0.06em 0 #1d6f5f, 0.075em 0.09em 0 #134a40, 0 0.25em 0.5em rgba(0, 0, 0, 0.7);
+}
+.wk-proof .num3d { margin-right: 2px; font-family: var(--font-serif); font-size: 22px; font-weight: 700; letter-spacing: -0.02em; vertical-align: -2px; }
+
+/* buttons as chunky 3D tiles that lean toward the pointer */
+[data-tilt] { transform: perspective(420px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform 0.25s ease-out; }
+.tile3d {
+  --face: #161b22;
+  --edge: #0b0e12;
+  border-color: rgba(255, 255, 255, 0.22);
+  background: linear-gradient(160deg, color-mix(in srgb, var(--face) 80%, #fff 20%), var(--face) 60%);
+  color: #fff;
+  box-shadow: 0 1px 0 var(--edge), 0 2px 0 var(--edge), 0 3px 0 var(--edge), 0 8px 14px rgba(0, 0, 0, 0.55);
+}
+.tile3d:hover { border-color: rgba(255, 255, 255, 0.4); }
+.tile3d--linkedin { --face: #0a66c2; --edge: #053e77; }
+.tile3d--github { --face: #2b3138; --edge: #121519; }
+.tile3d--leetcode { --face: #262626; --edge: #101010; color: #ffa116; }
+
+/* small pencil doodles that keep a section company */
+.doodle { position: absolute; z-index: 0; height: auto; mix-blend-mode: screen; pointer-events: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .doodle.is-up { animation: pop-up 0.9s cubic-bezier(0.22, 0.9, 0.3, 1.2) both, doodle-bob 5s ease-in-out 0.9s infinite alternate; }
+}
+@keyframes doodle-bob { to { translate: 0 -6px; rotate: z 3deg; } }
+
+/* phones and tablets turn to face the reader as they scroll in (engine/turn.ts drives --turn and --lit) */
+.wk-scope .wk-stage, .wk-scope .wk-cap { perspective: 1400px; }
+.wk-scope [data-turn] {
+  --dir: 1;
+  transform-origin: 50% 60%;
+  transform:
+    translateY(calc(var(--turn, 0) * 70px))
+    rotateX(calc(var(--turn, 0) * 22deg))
+    rotateY(calc(var(--turn, 0) * var(--dir) * -58deg))
+    rotateZ(calc(var(--turn, 0) * var(--dir) * -8deg))
+    scale(calc(1 - var(--turn, 0) * 0.12));
+}
+.wk-scope [data-turn="left"] { --dir: -1; }
+/* the screen stays dark until the device faces the reader: a black veil fading out, which the GPU blends for free,
+   where a brightness filter would re-filter the playing film on every frame */
+.wk-scope [data-turn] .wk-screen::after { content: ""; position: absolute; inset: 0; z-index: 20; border-radius: inherit; background: #000; opacity: calc((1 - var(--lit, 1)) * 0.7); pointer-events: none; will-change: opacity; }
+.wk-scope .wk-copy { position: relative; }
+.doodle--puzzle { width: 62px; top: -14px; right: 0; }
+@media (max-width: 720px) { .doodle--puzzle { width: 48px; } }
+/* company marks in the same spot: AiRA's face (her head with the eye and smile layers the films use), StreetDine's logo */
+.doodle--logo { mix-blend-mode: normal; top: -10px; right: 0; }
+.doodle--aira { width: 76px; aspect-ratio: 1; top: -22px; }
+.doodle--aira img { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
+.doodle--streetdine { width: 52px; border-radius: 12px; box-shadow: 0 0 24px rgba(156, 39, 176, 0.35); }
+@media (max-width: 720px) { .doodle--aira { width: 58px; } .doodle--streetdine { width: 42px; } }
+
+/* three teal strands braiding down the timelines (engine/braid.ts) */
+.braid { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; }
+.braid path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+/* Which line is the scroll driving? The timeline's, until a company's rows start stepping (engine/hold.ts sets
+   .is-held): then that list's line lights up and the timeline's dims, and back again when the rows are done. */
+.wk-flight > .braid path, .wk-caps > .braid { transition: stroke-opacity 0.35s var(--ease-out), opacity 0.35s var(--ease-out); }
+.js .wk-scope .wk-thread { transition: transform 1.2s var(--ease-out), opacity 0.35s var(--ease-out); }
+/* the dimmed timeline keeps all three strands, each turned down to the same faint level */
+.wk-flight.is-held > .braid path { stroke-opacity: 0.32; }
+.wk-flight.is-held > .braid path:first-of-type { stroke-opacity: 0.08; }
+.js .wk-scope .wk-flight.is-held .wk-thread { opacity: 0.22; }
+.wk-caps > .braid { opacity: 0.35; }
+.wk-caps.is-held > .braid { opacity: 1; }
+.wk-scope .wk-flight.has-braid .wk-thread { display: none; }
+.wk-scope .wk-caps.has-braid::before { display: none; }
+
+/* readable over the stars: every line of work copy gets a soft dark halo */
+.wk-scope .wk-cap__line, .wk-scope .wk-lede, .wk-scope .wk-deep li, .wk-scope .wk-base li, .wk-scope .wk-meta, .hr__line, .hr__proof li, .ab__bio {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 0 14px rgba(0, 0, 0, 0.85);
+}
+.wk-scope .wk-cap__line { font-size: 16.5px; line-height: 1.6; }
+
+
+/* the weekend drawing sits beside the Side projects heading */
+#projects .pj-head { align-items: center; }
+.pj-art { margin: 0; }
+.pj-art img {
+  display: block; width: 100%; height: auto; mix-blend-mode: screen;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent), linear-gradient(180deg, transparent, #000 8%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent), linear-gradient(180deg, transparent, #000 8%, #000 90%, transparent);
+  -webkit-mask-composite: source-in; mask-composite: intersect;
+}
+@media (min-width: 900px) {
+  #projects .pj-head { grid-template-columns: minmax(0, 1fr) minmax(0, 460px); column-gap: 40px; }
+}
+@media (max-width: 899.98px) {
+  .pj-art { width: min(100%, 520px); margin-top: 8px; }
+}
+
+/* a change of topic turns the phone edge-on, swaps the screen out of sight, and opens it back up (sections/work.ts) */
+@keyframes wk-device-flip {
+  0% { rotate: y 0deg; scale: 1; }
+  47% { rotate: y 88deg; scale: 0.94; }
+  53% { rotate: y -88deg; scale: 0.94; }
+  82% { rotate: y 8deg; scale: 1.035; }
+  100% { rotate: y 0deg; scale: 1; }
+}
+.wk-scope .wk-device.is-flipping { animation: wk-device-flip 0.62s cubic-bezier(0.45, 0, 0.25, 1); }
+.wk-scope .wk-device.is-flipping .wk-screen { animation: wk-screen-open 0.62s ease-out; }
+@keyframes wk-screen-open { 0%, 50% { filter: brightness(0.5); } 100% { filter: none; } }

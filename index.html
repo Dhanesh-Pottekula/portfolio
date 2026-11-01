@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Dhanesh Pottekula · AI that listens, acts and animates, and the backend that runs it</title>
+  <meta name="description" content="Founding engineer at AiRA Labs, Bengaluru. Realtime voice you can interrupt, screens it writes while it talks, and Lumen, the engine I wrote that lets language models turn text into video.">
+  <meta property="og:title" content="Dhanesh Pottekula · I build AI that listens, acts, and animates">
+  <meta property="og:description" content="Founding engineer at AiRA Labs, Bengaluru. Realtime voice, streamed screens, agents that ask first, and an animation engine I wrote.">
+  <meta property="og:image" content="og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="img/ink/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&family=JetBrains+Mono:wght@400;500;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="img/pencil/me.webp" fetchpriority="high">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body>
+  <a class="skip" href="#work">skip to the work</a>
+  <div class="sky" aria-hidden="true"><canvas></canvas></div>
+  <header class="bar">
+    <a class="bar__home" href="#hero" aria-label="Dhanesh Pottekula, back to top">Dhanesh</a>
+    <nav class="bar__nav" aria-label="Sections">
+      <a href="#work">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#about">about</a>
+    </nav>
+    <button class="bar__contact" type="button" data-contact>contact</button>
+  </header>
+  <div data-mount="contact"></div>
+  <main>
+    <section id="hero" data-mount="hero"></section>
+    <section id="work" class="wk-scope" data-mount="work"></section>
+    <section id="projects" data-mount="projects"></section>
+    <section id="about" data-mount="about"></section>
+  </main>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

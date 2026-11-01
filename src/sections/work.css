@@ -1,0 +1,194 @@
+#work { position: relative; padding-block: var(--section-pad); }
+.wk-scope .wk-head { display: grid; gap: 12px; margin-bottom: clamp(48px, 7vw, 88px); }
+
+/* the flight log: one teal thread, a blip per job, dates beside it */
+.wk-scope .wk-flight { position: relative; }
+.wk-scope .wk-thread {
+  position: absolute;
+  left: 4px;
+  top: 12px;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, var(--signal), var(--signal-glow) 70%, transparent);
+  filter: drop-shadow(0 0 4px var(--signal-glow));
+  transform-origin: 50% 0;
+}
+.js .wk-scope .wk-thread { opacity: 1; transform: scaleY(0); transition: transform 1.2s var(--ease-out); }
+.js .wk-scope .wk-thread.is-in { transform: none; }
+
+.wk-scope .wk-log { list-style: none; padding: 0; display: grid; gap: clamp(72px, 9vw, 112px); }
+.wk-scope .wk-entry { position: relative; display: grid; grid-template-columns: 216px minmax(0, 1fr); }
+.wk-scope .wk-blip {
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 0 4px var(--sky), 0 0 14px 3px var(--signal-glow);
+}
+.wk-scope .wk-entry--past .wk-blip { background: var(--sky); border: 1.5px solid var(--signal); }
+.wk-scope .wk-entry--now .wk-blip::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  border: 1px solid var(--signal);
+  animation: wk-ping 2.6s var(--ease-out) infinite;
+}
+@keyframes wk-ping {
+  from { transform: scale(1); opacity: 0.9; }
+  to { transform: scale(3.4); opacity: 0; }
+}
+
+.wk-scope .wk-date { padding: 9px 16px 0 28px; font-family: var(--font-mono); font-size: 12px; line-height: 1.5; letter-spacing: 0.04em; color: var(--ink-2); }
+.wk-scope .wk-date b { font-weight: 500; color: var(--signal); }
+.wk-scope .wk-date small { display: block; margin-top: 6px; font-size: 11px; color: var(--ink-3); }
+
+/* entry header */
+.wk-scope .wk-top { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px 40px; align-items: start; }
+.wk-scope .wk-title { font-family: var(--font-serif); font-weight: 400; font-size: 48px; line-height: 1.04; letter-spacing: -0.01em; }
+.wk-scope .wk-meta { margin-top: 10px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; color: var(--ink-3); }
+.wk-scope .wk-intro { margin-top: 18px; max-width: var(--measure); color: var(--ink-2); }
+.wk-scope .wk-proof { margin-top: 14px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; color: var(--ink-3); }
+.wk-scope .wk-art { width: 280px; height: auto; margin-top: -28px; object-fit: contain; }
+.wk-scope .wk-art--streetdine { width: 220px; }
+
+/* capabilities: a tablist beside one drawn device */
+.wk-scope .wk-body { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 56px; align-items: start; margin-top: 40px; }
+.wk-scope .wk-caps { position: relative; display: grid; gap: 4px; list-style: none; padding: 0; }
+.wk-scope .wk-caps::before { content: ""; position: absolute; left: 4px; top: 26px; bottom: 26px; width: 1px; background: var(--hair); }
+.wk-scope .wk-cap__btn {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  padding: 12px 12px 12px 30px;
+  border-radius: 12px;
+  text-align: left;
+}
+.wk-scope .wk-cap__btn::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 22px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid var(--hair-hover);
+  background: var(--sky);
+  transition: background 0.24s var(--ease-out), border-color 0.24s var(--ease-out), box-shadow 0.24s var(--ease-out);
+}
+.wk-scope .wk-cap__btn.is-on::before { background: var(--signal); border-color: var(--signal); box-shadow: 0 0 12px 2px var(--signal-glow); }
+.wk-scope .wk-cap__title { font-family: var(--font-serif); font-size: 26px; line-height: 1.1; color: var(--ink-2); transition: color 0.16s; }
+.wk-scope .wk-cap__line { max-width: var(--measure); font-size: 15.5px; line-height: 1.5; color: var(--ink-3); transition: color 0.16s; }
+/* how it's built and its numbers: open on the chosen row only; work.ts sets the heights so the list never changes size */
+.wk-scope .wk-cap__more { display: grid; gap: 6px; align-content: start; }
+.js .wk-scope .wk-cap__more { height: 0; overflow: hidden; opacity: 0; transition: opacity 0.25s; }
+.js .wk-scope .wk-cap__btn.is-on .wk-cap__more { opacity: 1; transition: opacity 0.4s 0.15s; }
+.wk-scope .wk-cap__how { max-width: var(--measure); padding-top: 4px; font-size: 13.5px; line-height: 1.55; color: var(--ink-3); transition: color 0.16s; }
+.wk-scope .wk-cap__nums { font-family: var(--font-mono); font-size: 11.5px; line-height: 1.7; letter-spacing: 0.02em; color: var(--ink-3); }
+.wk-scope .wk-cap__nums b { font-weight: 500; color: var(--ink-2); transition: color 0.16s; }
+.wk-scope .wk-cap__nums i { margin: 0 4px; font-style: normal; opacity: 0.5; }
+.wk-scope .wk-cap__btn.is-on .wk-cap__nums b { color: var(--signal); }
+.wk-scope .wk-cap__btn.is-on .wk-cap__title { color: var(--ink-1); }
+.wk-scope .wk-cap__btn.is-on .wk-cap__line { color: var(--ink-2); }
+.wk-scope .wk-cap__line b { font-weight: 600; color: var(--ink-2); transition: color 0.16s; }
+.wk-scope .wk-cap__btn.is-on .wk-cap__line b { color: var(--signal); }
+@media (hover: hover) {
+  .wk-scope .wk-cap__btn:hover .wk-cap__title { color: var(--ink-1); }
+}
+
+
+/* the device keeps the original phone and tablet frames and their palette; the film canvas inside is scaled by --k */
+.wk-scope .wk-device {
+  --coral: #ff6b4a;
+  --sun: #ffc845;
+  --teal: #2ec4b6;
+  --cream: #fff4e0;
+  --paper: #f6ecd8;
+  --ink: #0e1124;
+  --navy: #161a33;
+  --midnight: #262c5a;
+  --muted: rgba(255, 244, 224, 0.72);
+  --faint: rgba(255, 244, 224, 0.4);
+  --line: rgba(255, 244, 224, 0.16);
+  --shadow: 0 30px 80px rgba(5, 7, 20, 0.45);
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-hand: "Caveat", cursive;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --w: 282;
+  --h: 606;
+  position: relative;
+  /* As tall as a short laptop screen allows beside the pinned rows (screen 282 × 606 inside 9px of bezel), up to 300px wide */
+  width: clamp(220px, calc((100svh - 150px) * 0.465), 300px);
+  padding: 9px;
+  border-radius: 46px;
+  background: var(--ink);
+  box-shadow: inset 0 0 0 2px rgba(255, 244, 224, 0.14), var(--shadow);
+}
+.wk-scope .wk-device--tablet {
+  --w: 436;
+  --h: 316;
+  width: 400px;
+  padding: 12px;
+  border-radius: 26px;
+}
+.wk-scope .wk-screen { position: relative; aspect-ratio: var(--w) / var(--h); overflow: hidden; border-radius: 38px; background: var(--paper); }
+.wk-scope .wk-device--tablet .wk-screen { border-radius: 14px; }
+
+.wk-scope .wk-chips { margin-top: 36px; }
+
+/* earlier jobs sit a step smaller */
+.wk-scope .wk-entry--past .wk-title { font-size: 40px; }
+.wk-scope .wk-entry--past .wk-cap__title { font-size: 22px; }
+.wk-scope .wk-entry--past .wk-cap__btn::before { top: 19px; }
+.wk-scope .wk-entry--past .wk-caps::before { top: 23px; bottom: 23px; }
+.wk-scope .wk-links { margin-top: 16px; }
+
+@media (max-width: 1099.98px) {
+  .wk-scope .wk-entry { grid-template-columns: minmax(0, 1fr); padding-left: 32px; }
+  .wk-scope .wk-date { padding: 0 0 12px; }
+  .wk-scope .wk-blip { top: 5px; }
+  .wk-scope .wk-device--tablet { width: 340px; }
+}
+
+@media (max-width: 819.98px) {
+  .wk-scope .wk-entry { padding-left: 26px; }
+  .wk-scope .wk-title, .wk-scope .wk-entry--past .wk-title { font-size: 34px; }
+  .wk-scope .wk-top { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .wk-scope .wk-art { width: 200px; max-height: 60vh; margin: 0; }
+  .wk-scope .wk-art--streetdine { width: 170px; }
+
+  .wk-scope .wk-body { display: block; margin-top: 28px; }
+  .wk-scope .wk-stage { display: none; }
+  .wk-scope .wk-caps { gap: 0; border-bottom: 1px solid var(--hair); }
+  .wk-scope .wk-caps::before { display: none; }
+  .wk-scope .wk-cap { border-top: 1px solid var(--hair); }
+  .wk-scope .wk-cap__btn { min-height: 56px; padding: 14px 36px 14px 0; border-radius: 0; }
+  .wk-scope .wk-cap__btn::before,
+  .wk-scope .wk-entry--past .wk-cap__btn::before {
+    left: auto;
+    right: 8px;
+    top: 24px;
+    width: 8px;
+    height: 8px;
+    border: solid var(--ink-2);
+    border-width: 0 1.5px 1.5px 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    rotate: 45deg;
+    transition: rotate 0.24s var(--ease-out), border-color 0.24s var(--ease-out);
+  }
+  .wk-scope .wk-cap__btn.is-on::before { top: 28px; border-color: var(--signal); background: none; box-shadow: none; rotate: -135deg; }
+  .wk-scope .wk-cap__title, .wk-scope .wk-entry--past .wk-cap__title { font-size: 22px; }
+  .wk-scope .wk-cap__line { font-size: 15px; }
+  .wk-scope .wk-device { width: min(260px, 100%); margin: 6px auto 26px; }
+  .wk-scope .wk-device--tablet { width: min(300px, 100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wk-scope .wk-entry--now .wk-blip::after { display: none; }
+}

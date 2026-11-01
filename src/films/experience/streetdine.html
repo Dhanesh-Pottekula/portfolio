@@ -1,0 +1,76 @@
+<div class="wk-dash__bar" aria-hidden="true"><b>StreetDine</b><span>partner</span><i>tonight</i></div>
+
+<!-- Service: the live order board, then a table adds to its order and it reaches the kitchen. -->
+<div class="wk-film" data-film="service" data-dur="20" role="img" aria-label="A restaurant tablet: three table orders arrive on a live board with their waiters, change from new to accepted to ready, and an item is added to one order mid-meal. Then a push notification says table 7 added jeera rice, the new items appear live on the order, staff send them to the kitchen, and a kitchen ticket prints.">
+<div class="wk-part wk-orders" data-at="0" data-until="10">
+  <div class="wk-scene" data-class-at="0:|9.3:is-out">
+    <p class="wk-dash__head"><b>live orders</b><span data-text-at="0:0 open|0.3:1 open|0.9:2 open|1.5:3 open">0 open</span></p>
+    <div class="wk-board">
+      <div class="wk-order" data-at="0.3" data-class-at="0:is-new|1.8:is-acc|4.4:is-rdy">
+        <p class="wk-order__top"><b>Table 4</b><span class="wk-pill" data-text-at="0:NEW|1.8:ACCEPTED|4.4:READY">NEW</span></p>
+        <p class="wk-order__who">waiter · Ravi</p>
+        <ul><li>2 × paneer tikka</li><li>1 × dal makhani</li><li>3 × butter naan</li></ul>
+      </div>
+      <div class="wk-order" data-at="0.9" data-class-at="0:is-new|3:is-acc|7:is-rdy">
+        <p class="wk-order__top"><b>Table 7</b><span class="wk-pill" data-text-at="0:NEW|3:ACCEPTED|7:READY">NEW</span></p>
+        <p class="wk-order__who">waiter · Asha</p>
+        <ul><li>1 × veg biryani</li><li>2 × raita</li><li class="wk-added" data-at="5.2">+1 jeera rice</li></ul>
+      </div>
+      <div class="wk-order" data-at="1.5" data-class-at="0:is-new|6:is-acc">
+        <p class="wk-order__top"><b>Table 2</b><span class="wk-pill" data-text-at="0:NEW|6:ACCEPTED">NEW</span></p>
+        <p class="wk-order__who" data-text-at="0:waiter · —|3.6:waiter · Ravi">waiter · —</p>
+        <ul><li>2 × masala dosa</li><li>2 × filter coffee</li></ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="wk-part wk-kitchen" data-at="10">
+  <div class="wk-scene" data-class-at="10:|19.3:is-out">
+    <p class="wk-push" data-at="10.2"><i></i><b>table 7 added an item</b><span>now</span></p>
+    <div class="wk-batch" data-at="11">
+      <p class="wk-kicker"><i class="wk-live"></i>table 7 · new items</p>
+      <ul><li>2 × paneer tikka</li><li>1 × butter naan</li><li class="wk-added" data-at="11.4">+1 jeera rice</li></ul>
+      <span class="wk-btn" data-tap="12.2" data-class-at="10:|12.5:is-sent"><span data-text-at="10:send to kitchen|12.5:sent ✓">send to kitchen</span></span>
+    </div>
+    <div class="wk-printer">
+      <div class="wk-printer__body"><i></i></div>
+      <div class="wk-ticket-clip">
+        <div class="wk-ticket" data-class-at="10:|17.8:is-torn">
+          <p class="wk-ticket__big" data-at="12.9">KOT #142</p>
+          <p data-at="13.3">table 7 · batch 2</p>
+          <p data-at="13.7">8:21 pm · Asha</p>
+          <p class="wk-ticket__cut" data-at="14.1"></p>
+          <p data-at="14.5"><b>2</b> paneer tikka</p>
+          <p data-at="14.9"><b>1</b> butter naan</p>
+          <p data-at="15.3"><b>1</b> jeera rice</p>
+          <p class="wk-ticket__cut" data-at="15.7"></p>
+          <p data-at="16.1">note: less spicy</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Money: the owner reads the night at closing, from the reporting APIs. -->
+<div class="wk-film" data-film="money" data-dur="10" role="img" aria-label="The owner reads tonight's sales at closing: the total counts up to 48,620 rupees, sales bars fill hour by hour in restaurant time, and the trending dish appears.">
+<div class="wk-part wk-sales" data-at="0">
+  <div class="wk-scene" data-class-at="0:|9.3:is-out">
+    <div class="wk-sales__top">
+      <div>
+        <p class="wk-kicker">sales · today</p>
+        <p class="wk-sales__total" data-text-at="0:₹0|1:₹2,140|1.4:₹6,870|1.8:₹11,300|2.2:₹17,950|2.6:₹24,480|3:₹31,020|3.4:₹38,760|3.8:₹44,310|4.2:₹48,620">₹0</p>
+      </div>
+      <div class="wk-seg"><b>hour</b><span>day</span><span>month</span></div>
+    </div>
+    <div class="wk-bars">
+      <i style="--h:0.28;--d:0.8"></i><i style="--h:0.62;--d:1"></i><i style="--h:0.48;--d:1.2"></i><i style="--h:0.2;--d:1.4"></i>
+      <i style="--h:0.12;--d:1.6"></i><i style="--h:0.18;--d:1.8"></i><i style="--h:0.5;--d:2"></i><i style="--h:0.82;--d:2.2"></i>
+      <i style="--h:1;--d:2.4"></i><i style="--h:0.74;--d:2.6"></i><i style="--h:0.4;--d:2.8"></i>
+    </div>
+    <p class="wk-bars__axis"><span>12</span><span>2</span><span>4</span><span>6</span><span>8</span><span>10 pm</span></p>
+    <p class="wk-tz" data-at="3.4">restaurant time · IST</p>
+    <span class="wk-trend" data-at="5">trending: paneer tikka</span>
+  </div>
+</div>
+</div>

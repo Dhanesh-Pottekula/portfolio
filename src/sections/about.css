@@ -1,0 +1,44 @@
+#about { position: relative; padding-top: var(--section-pad); overflow: hidden; }
+
+/* Wide screens: the headline beside the bio, then the ask beside the drawing, so the art sits with the words it
+   belongs to. Narrow screens stack: headline, bio, drawing, ask. */
+.ab {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  grid-template-areas: "head text" "cta art";
+  gap: clamp(28px, 4vw, 56px) clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+.ab__head { grid-area: head; display: grid; gap: 14px; }
+.ab__text { grid-area: text; display: grid; gap: 22px; padding-top: 34px; }
+.ab__cta { grid-area: cta; align-self: center; display: grid; gap: 24px; }
+.ab__art { grid-area: art; }
+
+.ab__title { max-width: 13ch; }
+.ab__tools { font-family: var(--font-mono); font-size: 14px; line-height: 1.9; color: var(--ink-2); }
+.ab__tools .kicker { margin-right: 8px; }
+.ab__ask { font-size: clamp(38px, 4.6vw, 60px); line-height: 1.05; }
+.ab__pills .pill { text-transform: none; letter-spacing: 0.04em; }
+.ab__state { margin-left: 4px; padding-left: 10px; border-left: 1px solid rgba(79, 227, 193, 0.4); color: var(--ink-2); }
+
+/* The drawing, cropped to the hiker, his steam and the moon (source x 430–1300, y 80–812 of 1460 × 812); the
+   tent and the generator's corner mark fall outside. Edges fade into the night. */
+.ab__art { position: relative; margin: -24px clamp(-160px, -9vw, 0px) 0 0; aspect-ratio: 870 / 732; overflow: hidden; }
+.ab__art img {
+  position: absolute; left: -49.43%; top: -10.93%; width: 167.82%; max-width: none; height: auto;
+  mix-blend-mode: screen;
+  -webkit-mask-image: linear-gradient(90deg, transparent 29.5%, #000 41%, #000 82%, transparent 89%), linear-gradient(180deg, #000 82%, transparent 98%);
+  mask-image: linear-gradient(90deg, transparent 29.5%, #000 41%, #000 82%, transparent 89%), linear-gradient(180deg, #000 82%, transparent 98%);
+  -webkit-mask-composite: source-in; mask-composite: intersect;
+}
+
+.ab__foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 8px 32px; font-family: var(--font-mono); font-size: 13px; color: var(--ink-3); }
+
+@media (max-width: 899px) {
+  .ab { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "text" "art" "cta"; }
+  .ab__text { padding-top: 0; }
+  .ab__art { width: min(100%, 520px); margin: 0; justify-self: center; }
+}
+@media (max-width: 600px) {
+  .ab__foot { justify-content: center; text-align: center; }
+}

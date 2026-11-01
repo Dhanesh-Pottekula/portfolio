@@ -1,0 +1,68 @@
+#hero { position: relative; }
+/* One composition: the drawing on the left, the words on the right, sized to each other so the drawing's
+   sky sits level with the name and its hill lands on the stats line. Narrow screens stack them, drawing first but small. */
+.hr {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "art copy";
+  align-items: center; column-gap: clamp(24px, 4.5vw, 104px);
+  width: min(100%, 1640px); min-height: 100svh; margin-inline: auto;
+  padding: clamp(96px, 12vh, 140px) var(--gutter) clamp(40px, 7vh, 96px);
+}
+.hr__portrait { grid-area: art; margin: 0; }
+.hr__portrait img {
+  display: block; width: 100%; max-width: 900px; height: auto; margin-inline: auto; mix-blend-mode: screen;
+  /* The edge fade is baked into the image (to black, which the screen blend hides): a CSS mask on this floating
+     layer flashed a hairline along the bottom edge whenever the float landed between pixels. */
+  will-change: translate;
+}
+.js .hr__portrait img { opacity: 0; }
+.hr__portrait.is-drawn img { opacity: 1; animation: hr-sketch 1.8s cubic-bezier(0.3, 0.6, 0.2, 1) both, hr-float 6s ease-in-out 1.8s infinite alternate; }
+@keyframes hr-sketch {
+  0% { opacity: 0; filter: blur(6px) brightness(0.4) contrast(2); clip-path: inset(0 100% 0 0); }
+  35% { opacity: 1; }
+  100% { opacity: 1; filter: none; clip-path: inset(0 0 0 0); }
+}
+@keyframes hr-float { to { translate: 0 -8px; } }
+.hr__copy { grid-area: copy; display: flex; flex-direction: column; align-items: flex-start; max-width: 720px; }
+.hr__prompt { display: flex; align-items: center; gap: 10px; margin-bottom: clamp(14px, 1.2vw, 22px); font-family: var(--font-mono); font-size: clamp(14px, 1vw, 17px); letter-spacing: 0.04em; color: var(--ink-2); }
+.hr__prompt span { color: var(--signal); }
+.hr__caret { width: 8px; height: 16px; background: var(--signal); animation: hr-blink 1.1s steps(1) infinite; }
+@keyframes hr-blink { 50% { opacity: 0; } }
+.hr__name { margin: 0 0 clamp(18px, 1.6vw, 28px); font-family: var(--font-sign); font-weight: 500; font-size: clamp(44px, 5.8vw, 112px); line-height: 0.98; letter-spacing: -0.02em; color: var(--ink-1); }
+.hr__line { max-width: 34ch; margin-bottom: clamp(16px, 1.3vw, 24px); font-family: var(--font-serif); font-weight: 600; font-size: clamp(18px, 1.75vw, 30px); line-height: 1.45; letter-spacing: -0.01em; color: var(--ink-2); }
+.hr__line em { font-style: normal; color: var(--signal); }
+.hr__meta { margin-bottom: clamp(26px, 2.2vw, 40px); font-size: clamp(12px, 0.85vw, 14px); }
+.hr__pills { margin-bottom: clamp(30px, 2.6vw, 48px); }
+.hr__proof {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 20px; list-style: none;
+  width: 100%; padding: clamp(20px, 1.6vw, 28px) 0 0; margin: 0; border-top: 1px solid var(--hair); font-size: clamp(13.5px, 0.95vw, 16px); line-height: 1.4;
+}
+.hr__proof .pop-clip { display: block; padding-top: 4px; }
+.hr__proof li { display: flex; flex-direction: column; gap: 4px; color: var(--ink-3); }
+.hr__proof b { display: inline-block; font-family: var(--font-serif); font-size: clamp(22px, 2.3vw, 38px); font-weight: 700; letter-spacing: -0.02em; color: var(--ink-1); }
+.hr__proof .num3d { text-shadow: 0.03em 0.05em 0 #1d6f5f, 0 0.25em 0.5em rgba(0, 0, 0, 0.6); }
+
+/* Big screens: the buttons grow with the type. */
+@media (min-width: 1280px) {
+  .hr__pills { gap: 12px; }
+  .hr__pills .pill { min-height: 48px; padding-inline: 20px; font-size: 15.5px; }
+  .hr__pills .pill--icon { width: 48px; padding: 0; }
+  .hr__pills .pill svg { width: 18px; height: 18px; }
+}
+/* Stacked: one centred column; the drawing lines up with the text's left edge so they read as one block. */
+@media (max-width: 900px) {
+  .hr { grid-template-columns: minmax(0, 600px); grid-template-areas: "art" "copy"; justify-content: center; min-height: auto; row-gap: 8px; padding-top: 88px; }
+  .hr__portrait img { width: min(100%, 380px); margin-inline: -4% 0; }
+  .hr__copy { max-width: none; }
+}
+@media (max-width: 600px) {
+  .hr__portrait img { width: min(84%, 300px); }
+  .hr__name { font-size: clamp(40px, 12vw, 52px); }
+  .hr__meta { letter-spacing: 0.1em; font-size: 11px; }
+  .hr__pills { gap: 6px; }
+  .hr__pills .pill:not(.pill--icon) { gap: 6px; padding-inline: 11px; font-size: 13.5px; }
+  .hr__proof { gap: 14px 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hr__caret { animation: none; }
+  .hr__portrait.is-drawn img { animation: none; }
+}
