@@ -26,6 +26,9 @@ const STRANDS = [
 ];
 
 const GLOW = { width: 6, opacity: 0.18 };
+// Share of the remaining distance the tip covers each frame on its way to where the scroll puts it, so a jump
+// (a wheel notch, a click on a row) glides from one checkpoint to the next instead of snapping.
+const GLIDE = 0.2;
 
 interface Point { x: number; y: number }
 
@@ -135,18 +138,38 @@ function braid(host: HTMLElement) {
   let marks: number[] = [0];
   let depth: Depth = { ys: [0], lengths: [0] };
 
-  const draw = () => {
-    if (!host.classList.contains("has-braid")) return;
-    let drawn: number;
-    if (reduceMotion) drawn = lengths[0];
-    else if (followHold) drawn = lengthForHold(holdProgress(host), marks, lengths[0]);
-    else drawn = Math.min(lengths[0], lengthAtDepth(depth, window.innerHeight * READ_LINE - host.getBoundingClientRect().top));
+  const paint = (drawn: number) => {
     const share = lengths[0] ? drawn / lengths[0] : 0;
     paths.forEach((path, k) => (path.style.strokeDashoffset = (lengths[k] * (1 - share)).toFixed(1)));
     glow.style.strokeDashoffset = paths[0].style.strokeDashoffset;
     const tip = paths[0].getPointAtLength(drawn).y;
     tipFade.setAttribute("y1", (tip - TIP_FADE).toFixed(1));
     tipFade.setAttribute("y2", tip.toFixed(1));
+  };
+
+  // How much of the leading strand is drawn now, and how much the scroll asks for; -1 until the first draw.
+  let shown = -1;
+  let target = 0;
+  let frame = 0;
+  const glide = () => {
+    shown += (target - shown) * GLIDE;
+    if (Math.abs(target - shown) < 0.5) shown = target;
+    paint(shown);
+    frame = shown === target ? 0 : requestAnimationFrame(glide);
+  };
+
+  const draw = () => {
+    if (!host.classList.contains("has-braid")) return;
+    if (reduceMotion) target = lengths[0];
+    else if (followHold) target = lengthForHold(holdProgress(host), marks, lengths[0]);
+    else target = Math.min(lengths[0], lengthAtDepth(depth, window.innerHeight * READ_LINE - host.getBoundingClientRect().top));
+    // A rebuild can shorten the strands under the tip.
+    shown = Math.min(shown, lengths[0]);
+    // The first draw (and reduced motion) lands at once, so the page doesn't open with the strands growing in.
+    if (reduceMotion || shown < 0) {
+      shown = target;
+      paint(shown);
+    } else if (!frame) frame = requestAnimationFrame(glide);
   };
 
   const build = () => {
